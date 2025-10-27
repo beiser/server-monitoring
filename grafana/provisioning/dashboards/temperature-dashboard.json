@@ -1,0 +1,50 @@
+{
+  "id": null,
+  "uid": "temp-dashboard",
+  "title": "Temperature Monitor",
+  "tags": ["temperature", "influxdb"],
+  "timezone": "browser",
+  "schemaVersion": 36,
+  "version": 1,
+  "refresh": "10s",
+  "panels": [
+    {
+      "type": "timeseries",
+      "title": "Unique TCP Connections on Port 443",
+      "id": 1,
+      "gridPos": {
+        "h": 20,
+        "w": 24,
+        "x": 0,
+        "y": 0
+      },
+      "datasource": {
+        "type": "influxdb"
+      },
+      "targets": [
+        {
+          "query": "from(bucket: \"mybucket\") |> range(start: -1h) |> filter(fn: (r) => r._measurement == \"tcp_connections\") |> filter(fn: (r) => r._field == \"count\")",
+          "refId": "A"
+        }
+      ],
+      "fieldConfig": {
+        "defaults": {
+          "unit": "none",
+          "color": { "mode": "palette-classic" },
+          "decimals": 0
+        },
+        "overrides": []
+      },
+      "options": {
+        "legend": {
+          "displayMode": "list",
+          "placement": "bottom"
+        },
+        "tooltip": {
+          "mode": "single"
+        }
+      }
+    }
+  ]
+}
+
