@@ -29,7 +29,7 @@ services:
     depends_on:
       - influxdb
     volumes:
-      - ./influxdb/data/grafana:/var/lib/grafana
+      - ./grafana/data:/var/lib/grafana
       - ./grafana/provisioning:/etc/grafana/provisioning
     restart: unless-stopped
 
